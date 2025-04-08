@@ -35,7 +35,8 @@ export default function IdeasPage() {
     // Fetch AI-generated ideas from the backend
     const fetchIdeas = async () => {
       try {
-        const response = await fetch('http://localhost:8080/generate-ideas', {
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080';
+        const response = await fetch(`${apiUrl}/generate-ideas`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -48,6 +49,7 @@ export default function IdeasPage() {
         organizeIdeasIntoBlocks(data.ideas);
       } catch (error) {
         console.error('Error fetching ideas:', error);
+        setLoading(false);
       } finally {
         setLoading(false);
       }

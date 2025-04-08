@@ -16,13 +16,8 @@ export default function HomePage() {
     // Set a timeout to change the animation class after initial animation
     const timeoutId = setTimeout(() => {
       setLetterClass('text-animate-hover');
-    },);
+    }, 2000); // Added a 2-second delay
     
-    fetch('http://localhost:8080/generate-ideas')
-      .then((res) => res.json())
-      .then((data) => console.log(data))
-      .catch((error) => console.error('Error fetching data:', error));
-      
     return () => clearTimeout(timeoutId);
   }, []);
 

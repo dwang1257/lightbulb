@@ -9,7 +9,7 @@ export default function HobbyPage() {
   const [hobby, setHobby] = useState('');
   const router = useRouter();
 
-  const [letterClass, setLetterClass] = useState('text-animate');
+  const letterClass = 'text-animate';
   const titleArray = ['H', 'o', 'b', 'b', 'i', 'e', 's'];
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -25,7 +25,7 @@ export default function HobbyPage() {
           <Animate letterClass={letterClass} strArray={titleArray} index={0} />
         </h1>
         
-        <p className='text-black mb-6 font-medium'>What's your favorite hobby?</p>
+        <p className='text-black mb-6 font-medium'>What&apos;s your favorite hobby?</p>
         
         <form onSubmit={handleSubmit} className='space-y-4'>
           <div className='relative'>

@@ -23,7 +23,7 @@ export default function IdeasPage() {
   const [loading, setLoading] = useState(true);
   const [projectBlocks, setProjectBlocks] = useState<any[]>([]);
 
-  const [letterClass, setLetterClass] = useState('text-animate');
+  const letterClass = 'text-animate';
   const titleArray = ['P', 'r', 'o', 'j', 'e', 'c', 't', 's'];
 
   useEffect(() => {

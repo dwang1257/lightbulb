@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Layout from '../layout';
 import Animate from '../animate/Animate';
 import 'animate.css';
 

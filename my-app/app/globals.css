@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+  /* Add these styles to your global CSS file */
+
+@keyframes glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.8));
+  }
+  50% {
+    filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.6));
+  }
+}
+
+.lightbulb-glow {
+  animation: glow 3s infinite ease-in-out;
+}
+
+.text-animate-hover {
+  display: inline-block;
+  transition: all 0.3s ease-out;
+}
+
+.text-animate-hover:hover {
+  color: #FFD700;
+  transform: scale(1.1);
+  cursor: pointer;
+}

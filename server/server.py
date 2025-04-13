@@ -44,17 +44,18 @@ def generate_ideas():
             model="llama-3.3-70b-versatile"  # Use the desired Grok model
         )
 
- 
-
         # Extract ideas from the response
         ideas = chat_completion.choices[0].message.content.strip().split('\n')
         return jsonify({'ideas': ideas})
-
 
     except Exception as e:
         print(f"Error generating ideas: {e}")
         return jsonify({'error': 'Failed to generate ideas'}), 500
 
+# For Vercel deployment
+def handler(event, context):
+    return app(event, context)
 
 if __name__ == '__main__':
-    app.run(debug=True, port=8080)
+    port = int(os.environ.get('PORT', 8080))
+    app.run(host='0.0.0.0', port=port)

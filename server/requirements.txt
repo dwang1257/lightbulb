@@ -3,3 +3,4 @@ flask-cors==4.0.0
 python-dotenv==1.0.1
 groq==0.4.2
 werkzeug==3.0.1 
+gunicorn==20.1.0

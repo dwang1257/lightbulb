@@ -4,24 +4,20 @@ from dotenv import load_dotenv
 import os
 from groq import Groq
 
-# Initialize Flask app
 app = Flask(__name__)
-CORS(app, origins="*") 
+CORS(app)
 load_dotenv()
 
 client = Groq(
     api_key=os.environ.get("API_KEY"),
 )
 
-@app.route('/api/generate-ideas', methods=['POST'])
-def generate_ideas():
+def generate_ideas_handler(request):
     # Get data from the request
-    data = request.json
+    data = request.get_json()
     hobby = data.get('hobby')
     technologies = data.get('technologies')
     
-    print(f"Received request with hobby: {hobby}, technologies: {technologies}")  # Debug logging
-
     if not hobby or not technologies:
         return jsonify({'error': 'Hobby and technologies are required'}), 400
 
@@ -48,16 +44,24 @@ def generate_ideas():
 
         # Extract ideas from the response
         ideas = chat_completion.choices[0].message.content.strip().split('\n')
-        print(f"Generated ideas: {ideas}")  # Debug logging
         return jsonify({'ideas': ideas})
 
     except Exception as e:
-        print(f"Error generating ideas: {e}")
         return jsonify({'error': 'Failed to generate ideas'}), 500
 
-# Vercel requires a handler function
+# Vercel serverless handler
 def handler(request):
-    if request.method == "POST" and request.path == "/api/generate-ideas":
-        return generate_ideas()
+    # For HTTP options requests
+    if request.method == "OPTIONS":
+        headers = {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "POST",
+            "Access-Control-Allow-Headers": "Content-Type",
+        }
+        return ('', 204, headers)
+    
+    # Specifically handle POST requests for generate-ideas
+    if request.method == "POST":
+        return generate_ideas_handler(request)
     else:
-        return jsonify({"error": "Not found"}), 404
+        return jsonify({"error": "Method not allowed"}), 405

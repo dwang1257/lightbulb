@@ -1,11 +1,11 @@
 {
   "version": 2,
   "builds": [
-    { "src": "api/*.py", "use": "@vercel/python" },
+    { "src": "server/*.py", "use": "@vercel/python" },
     { "src": "my-app/next.config.js", "use": "@vercel/next" }
   ],
   "routes": [
-    { "src": "/api/generate-ideas", "dest": "/api/generate-ideas.py" },
+    { "src": "/server/generate-ideas", "dest": "/server/generate-ideas.py" },
     { "src": "/(.*)", "dest": "/my-app/$1" }
   ]
 }

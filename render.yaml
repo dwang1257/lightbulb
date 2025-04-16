@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: flask-api
+    env: python
+    plan: free
+    region: oregon
+    buildCommand: pip install -r requirements.txt
+    startCommand: ./start.sh
+    envVars:
+      - key: API_KEY
+        sync: false  # set this manually in the dashboard
+    rootDir: server
+
+
+    

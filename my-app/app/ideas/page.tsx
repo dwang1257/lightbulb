@@ -38,10 +38,10 @@ export default function IdeasPage() {
         const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080';
         
         // CHANGED FROM /server/generate-ideas to /api/generate-ideas
-        console.log('Fetching from:', `${apiUrl}/api/generate-ideas`);
+        console.log('Fetching from:', `${apiUrl}/server/generate-ideas`);
         console.log('Sending data:', { hobby, technologies });
         
-        const response = await fetch(`${apiUrl}/api/generate-ideas`, {
+        const response = await fetch(`${apiUrl}/server/generate-ideas`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

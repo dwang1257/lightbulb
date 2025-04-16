@@ -46,6 +46,11 @@ def generate_ideas():
     except Exception as e:
         print(f"Error generating ideas: {e}")
         return jsonify({'error': 'Failed to generate ideas'}), 500
+    
+@app.route('/test', methods=['GET'])
+def test():
+    return 'Backend is working!'
+
 
 @app.route('/')
 def health_check():

@@ -10,7 +10,7 @@ CORS(app)  # Allow all origins for now to debug
 load_dotenv()
 
 client = Groq(
-    api_key=os.environ.get("API_KEY"),
+    api_key=os.environ.get("API_KEY")
 )
 
 @app.route('/server/generate-ideas', methods=['POST'])

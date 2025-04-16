@@ -6,7 +6,7 @@ from groq import Groq
 
 # Initialize Flask app
 app = Flask(__name__)
-CORS(app)  # Allow all origins for now to debug
+CORS(app, origins="*") 
 load_dotenv()
 
 client = Groq(

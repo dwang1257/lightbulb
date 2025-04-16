@@ -13,7 +13,7 @@ client = Groq(
     api_key=os.environ.get("API_KEY"),
 )
 
-@app.route('/generate-ideas', methods=['POST'])
+@app.route('/server/generate-ideas', methods=['POST'])
 def generate_ideas():
     # Get data from the request
     data = request.json

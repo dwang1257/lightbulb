@@ -1,4 +1,3 @@
-#!/bin/bash
-gunicorn generate-ideas:app --bind 0.0.0.0:$PORT
+#!/usr/bin/env bash
+gunicorn server.generate-ideas:app --bind 0.0.0.0:$PORT --workers 1
 
-chmod +x server/start.sh

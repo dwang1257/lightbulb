@@ -13,7 +13,7 @@ client = Groq(
     api_key=os.environ.get("API_KEY"),
 )
 
-@app.route('/server/generate-ideas', methods=['POST'])
+@app.route('/api/generate-ideas', methods=['POST'])
 def generate_ideas():
     # Get data from the request
     data = request.json
@@ -57,7 +57,7 @@ def generate_ideas():
 
 # Vercel requires a handler function
 def handler(request):
-    if request.method == "POST" and request.path == "/server/generate-ideas":
+    if request.method == "POST" and request.path == "/api/generate-ideas":
         return generate_ideas()
     else:
         return jsonify({"error": "Not found"}), 404

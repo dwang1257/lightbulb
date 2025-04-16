@@ -35,7 +35,7 @@ export default function IdeasPage() {
     // Fetch AI-generated ideas from the backend
     const fetchIdeas = async () => {
       try {
-        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080';
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL;
         
         // CHANGED FROM /server/generate-ideas to /api/generate-ideas
         console.log('Fetching from:', `${apiUrl}/server/generate-ideas`);

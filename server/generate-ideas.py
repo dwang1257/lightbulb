@@ -6,7 +6,7 @@ from groq import Groq
 
 # Initialize Flask app
 app = Flask(__name__)
-CORS(app)
+CORS(app,  origins=["https://lightbulb-ideas.vercel.app/"])
 load_dotenv()
 
 client = Groq(

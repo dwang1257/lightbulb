@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
-gunicorn server.generate-ideas:app --bind 0.0.0.0:$PORT --workers 1
+cd /opt/render/project/src
+gunicorn generate-ideas:app --bind 0.0.0.0:$PORT --workers 1
 

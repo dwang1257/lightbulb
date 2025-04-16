@@ -2,15 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "server.py",
+      "src": "server/server.py",
       "use": "@vercel/python"
     }
   ],
   "routes": [
     {
       "src": "/generate-ideas",
-      "dest": "server.py",
-      "methods": ["POST"]
+      "dest": "server/server.py"
     }
   ]
-} 
+}

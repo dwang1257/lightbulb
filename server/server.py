@@ -2,15 +2,16 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 from dotenv import load_dotenv
 import os
-from groq import Groq  # Import Groq SDK
+from groq import Groq
+from http.server import BaseHTTPRequestHandler
 
-
+# Initialize Flask app
 app = Flask(__name__)
-CORS(app);
-load_dotenv()  # Load environment variables from .env
+CORS(app, resources={r"/generate-ideas": {"origins": "https://lightbulb-ideas.vercel.app"}})
+load_dotenv()
 
 client = Groq(
-    api_key=os.environ.get("API_KEY"),  # Get API key from environment variables
+    api_key=os.environ.get("API_KEY"),
 )
 
 @app.route('/generate-ideas', methods=['POST'])
@@ -41,7 +42,7 @@ def generate_ideas():
                     "content": prompt
                 }
             ],
-            model="llama-3.3-70b-versatile"  # Use the desired Grok model
+            model="llama-3.3-70b-versatile"
         )
 
         # Extract ideas from the response
@@ -52,10 +53,26 @@ def generate_ideas():
         print(f"Error generating ideas: {e}")
         return jsonify({'error': 'Failed to generate ideas'}), 500
 
-# For Vercel deployment
-def handler(event, context):
+# For Vercel serverless functions
+def app_handler(event, context):
     return app(event, context)
 
-if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 8080))
-    app.run(host='0.0.0.0', port=port)
+# Create a handler class for Vercel
+class handler(BaseHTTPRequestHandler):
+    def do_POST(self):
+        if self.path == '/generate-ideas':
+            content_length = int(self.headers['Content-Length'])
+            post_data = self.rfile.read(content_length)
+            
+            # Process with Flask
+            with app.test_request_context(
+                path='/generate-ideas',
+                method='POST',
+                input_stream=post_data,
+                headers=dict(self.headers)
+            ):
+                response = app.dispatch_request()
+                self.send_response(200)
+                self.send_header('Content-type', 'application/json')
+                self.end_headers()
+                self.wfile.write(response.get_data())

@@ -38,10 +38,10 @@ export default function IdeasPage() {
         const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080';
         
         // Add these debug logs
-        console.log('Fetching from:', `${apiUrl}/api/generate-ideas`);
+        console.log('Fetching from:', `${apiUrl}/server/generate-ideas`);
         console.log('Sending data:', { hobby, technologies });
         
-        const response = await fetch(`${apiUrl}/api/generate-ideas`, {  // Note the /api/ prefix
+        const response = await fetch(`${apiUrl}/server/generate-ideas`, {  // Note the /api/ prefix
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

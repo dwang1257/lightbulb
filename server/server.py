@@ -3,23 +3,24 @@ from flask_cors import CORS
 from dotenv import load_dotenv
 import os
 from groq import Groq
-from http.server import BaseHTTPRequestHandler
 
 # Initialize Flask app
 app = Flask(__name__)
-CORS(app, resources={r"/generate-ideas": {"origins": "https://lightbulb-ideas.vercel.app"}})
+CORS(app)  # Allow all origins for now to debug
 load_dotenv()
 
 client = Groq(
     api_key=os.environ.get("API_KEY"),
 )
 
-@app.route('/generate-ideas', methods=['POST'])
+@app.route('/api/generate-ideas', methods=['POST'])
 def generate_ideas():
     # Get data from the request
     data = request.json
     hobby = data.get('hobby')
     technologies = data.get('technologies')
+    
+    print(f"Received request with hobby: {hobby}, technologies: {technologies}")  # Debug logging
 
     if not hobby or not technologies:
         return jsonify({'error': 'Hobby and technologies are required'}), 400
@@ -47,32 +48,16 @@ def generate_ideas():
 
         # Extract ideas from the response
         ideas = chat_completion.choices[0].message.content.strip().split('\n')
+        print(f"Generated ideas: {ideas}")  # Debug logging
         return jsonify({'ideas': ideas})
 
     except Exception as e:
         print(f"Error generating ideas: {e}")
         return jsonify({'error': 'Failed to generate ideas'}), 500
 
-# For Vercel serverless functions
-def app_handler(event, context):
-    return app(event, context)
-
-# Create a handler class for Vercel
-class handler(BaseHTTPRequestHandler):
-    def do_POST(self):
-        if self.path == '/generate-ideas':
-            content_length = int(self.headers['Content-Length'])
-            post_data = self.rfile.read(content_length)
-            
-            # Process with Flask
-            with app.test_request_context(
-                path='/generate-ideas',
-                method='POST',
-                input_stream=post_data,
-                headers=dict(self.headers)
-            ):
-                response = app.dispatch_request()
-                self.send_response(200)
-                self.send_header('Content-type', 'application/json')
-                self.end_headers()
-                self.wfile.write(response.get_data())
+# Vercel requires a handler function
+def handler(request):
+    if request.method == "POST" and request.path == "/api/generate-ideas":
+        return generate_ideas()
+    else:
+        return jsonify({"error": "Not found"}), 404

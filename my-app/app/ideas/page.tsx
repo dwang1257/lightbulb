@@ -63,7 +63,7 @@ export default function IdeasPage() {
         console.log('Response data:', data);
         if (data.ideas && data.ideas.length === 1 && data.ideas[0] === 'Invalid hobby') {
           setInvalidHobby(true);
-        } else if (data.ideas && data.ideas.length === 1 && data.ideas[1] === 'Invalid technology'){
+        } else if (data.ideas && data.ideas.length === 1 && data.ideas[0] === 'Invalid technology'){
           setInvalidTech(true);
         } else {
           setIdeas(data.ideas);

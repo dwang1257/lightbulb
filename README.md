@@ -1,5 +1,7 @@
 # Lightbulb
 
+# Link: lightbulb-ideas.vercel.app
+
 Lightbulb is a web app designed to help computer science students with project ideas that correlate with their interests and goals. The app allows users to enter their hobbies and technologies they hope to learn. They will receive a few project ideas that are related to what they entered. 
 
 Audience -
@@ -14,3 +16,4 @@ The web app will generate three different ideas based on the information, one ba
 Tech Stack- 
 Typescript + Next.js, 
 Python + flask
+

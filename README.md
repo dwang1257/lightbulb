@@ -7,8 +7,8 @@ Computer Science Students
 People interested in making a fun project
 
 Scope/Requirements -
-The user can input hobbies 
-The user can select which technologies they would like to use
+The user can input hobbies.
+The user can select which technologies they would like to use.
 The web app will generate three different ideas based on the information, one basic, one medium level, and one advanced.
 
 Tech Stack- 

@@ -25,6 +25,8 @@ export default function IdeasPage() {
   const [loading, setLoading] = useState(true);
   const [projectBlocks, setProjectBlocks] = useState<any[]>([]);
   const [invalidHobby, setInvalidHobby] = useState(false);
+  const [invalidTech, setInvalidTech] = useState(false);
+
 
   const letterClass = 'text-animate';
   const titleArray = ['P', 'r', 'o', 'j', 'e', 'c', 't', 's'];
@@ -145,6 +147,29 @@ export default function IdeasPage() {
             <p className='text-white mb-4'>The hobby you entered is either inappropriate or not recognized. Please go back and enter a valid hobby.</p>
             <button 
               onClick={() => router.push("/hobbies")}
+              className='bg-black text-white font-bold py-2 px-6 rounded-lg hover:bg-gray-800 transition duration-300'
+            >
+              Go Back
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (invalidTech) {
+    return (
+      <div className='flex flex-col items-center justify-center min-h-screen bg-black text-center p-6'>
+        <h1 className='text-6xl font-bold mb-10 text-yellow-500'>
+          <Animate letterClass={letterClass} strArray={titleArray} index={0} />
+        </h1>
+        
+        <div className='w-full max-w-2xl'>
+          <div className='bg-red-500 rounded-xl shadow-2xl p-8 border border-red-400 transform transition-all duration-300'>
+            <h2 className='text-2xl font-bold mb-4 text-white'>Invalid Technology Inputted</h2>
+            <p className='text-white mb-4'>The technology you entered is either inappropriate or not recognized. Please go back and enter a valid technology.</p>
+            <button 
+              onClick={() => router.back()}
               className='bg-black text-white font-bold py-2 px-6 rounded-lg hover:bg-gray-800 transition duration-300'
             >
               Go Back

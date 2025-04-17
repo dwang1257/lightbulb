@@ -32,6 +32,8 @@ def generate_ideas():
                     - On the next line, provide a one-sentence description of the project.
 
                     If the hobby or interest entered is inappropriate or not a real hobby, respond with 'Invalid hobby'. Some examples of invalid hobbies are: gooning, masturbating, anything sexual, drugs, alcohol, diddy party, and anything illegal.
+                    
+                    If the technology entered is an invalid technology, respond with 'Invalid technology'. Some examples of invalid technologies are: anything illegal, anything that is not a coding technology, anything that would not immediately be recognized as a coding technology.
                 """
 
         chat_completion = client.chat.completions.create(

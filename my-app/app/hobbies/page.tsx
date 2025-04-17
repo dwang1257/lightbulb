@@ -19,34 +19,46 @@ export default function HobbyPage() {
   };
 
   return (
-    <div className='flex flex-col items-center justify-center min-h-screen text-center p-6 bg-black'>
-      <div className='w-full max-w-md bg-yellow-500 rounded-xl shadow-2xl p-8 mb-10 border border-yellow-300'>
-        <h1 className='text-6xl font-bold mb-8 text-black'>
-          <Animate letterClass={letterClass} strArray={titleArray} index={0} />
-        </h1>
+    <div className='flex flex-col items-center justify-center min-h-screen text-center p-6 bg-black bg-gradient-to-b from-black to-gray-900'>
+      <div className='w-full max-w-md'>
+        <div className='mb-10'>
+          <h1 className='text-7xl font-bold mb-3 text-yellow-500'>
+            <Animate letterClass={letterClass} strArray={titleArray} index={0} />
+          </h1>
+          <div className='w-16 h-1 bg-yellow-500 mx-auto rounded-full'></div>
+        </div>
         
-        <p className='text-black mb-6 font-medium'>What&apos;s your favorite hobby?</p>
-        
-        <form onSubmit={handleSubmit} className='space-y-4'>
-          <div className='relative'>
-            <input
-              type="text"
-              value={hobby}
-              onChange={(e) => setHobby(e.target.value)}
-              placeholder="Ex: Cooking, Gaming, Photography"
-              required
-              className="w-full px-6 py-3 bg-yellow-50 border border-yellow-300 rounded-lg text-black placeholder-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent transition-all"
-            />
-          </div>
+        <div className='bg-yellow-500 rounded-2xl shadow-2xl p-8 border border-yellow-300 backdrop-blur-sm'>
+          <p className='text-black text-xl mb-8 font-medium'>What's your favorite hobby?</p>
           
-          <button 
-            type="submit" 
-            className="w-full px-6 py-3 bg-black text-yellow-400 font-bold rounded-lg active:bg-black transform transition-all duration-200 ease-in-out hover:scale-105"
-          >
-            Next
-          </button>
-        </form>
+          <form onSubmit={handleSubmit} className='space-y-6'>
+            <div className='relative group'>
+              <input
+                type="text"
+                value={hobby}
+                onChange={(e) => setHobby(e.target.value)}
+                placeholder="Ex: Cooking, Gaming, Photography"
+                required
+                className="w-full px-6 py-4 bg-yellow-50 border-2 border-yellow-300 rounded-xl text-black placeholder-yellow-700 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-300 shadow-md"
+              />
+              <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-yellow-400 to-orange-500 opacity-0 group-hover:opacity-20 transition-opacity duration-300 pointer-events-none"></div>
+            </div>
+            
+            <button 
+              type="submit" 
+              className="w-full px-6 py-4 bg-black text-yellow-400 font-bold rounded-xl active:bg-gray-900 transform transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg hover:shadow-yellow-300/30 flex items-center justify-center gap-2"
+            >
+              <span>Next</span>
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+              </svg>
+            </button>
+          </form>
+        </div>
       </div>
+      
+      <div className='absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-yellow-500/5 to-transparent pointer-events-none'></div>
+      <div className='absolute top-0 right-0 w-64 h-64 rounded-full bg-yellow-500/5 blur-3xl pointer-events-none'></div>
     </div>
   );
 }

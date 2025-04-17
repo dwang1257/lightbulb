@@ -16,7 +16,7 @@ export default function HomePage() {
     // Set a timeout to change the animation class after initial animation
     const timeoutId = setTimeout(() => {
       setLetterClass('text-animate-hover');
-    }, 1); // Added a 2-second delay
+    }, 2000); // Added a 2-second delay
     
     return () => clearTimeout(timeoutId);
   }, []);

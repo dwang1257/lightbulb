@@ -31,7 +31,7 @@ def generate_ideas():
                     - Start with **Basic:**, **Medium:**, or **Advanced:** followed by the project title in quotes (e.g., **Basic:** 'Project Title').
                     - On the next line, provide a one-sentence description of the project.
 
-                    If the hobby or interest entered is inappropriate or not a real hobby, respond with 'Invalid hobby'.
+                    If the hobby or interest entered is inappropriate or not a real hobby, respond with 'Invalid hobby'. Some examples of invalid hobbies are: gooning, masturbating, anything sexual, drugs, alcohol, diddy party, and anything illegal.
                 """
 
         chat_completion = client.chat.completions.create(

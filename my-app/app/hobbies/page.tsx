@@ -19,19 +19,19 @@ export default function HobbyPage() {
   };
 
   return (
-    <div className='flex flex-col items-center justify-center min-h-screen text-center p-6 bg-black bg-gradient-to-b from-black to-gray-900'>
+    <div className='flex flex-col items-center justify-center min-h-screen text-center p-6 bg-black'>
       <div className='w-full max-w-md'>
-        <div className='mb-10'>
+        <div className='mb-16'>
           <h1 className='text-7xl font-bold mb-3 text-yellow-500'>
             <Animate letterClass={letterClass} strArray={titleArray} index={0} />
           </h1>
-          <div className='w-16 h-1 bg-yellow-500 mx-auto rounded-full'></div>
+          <div className='w-24 h-1 bg-yellow-500 mx-auto rounded-full'></div>
         </div>
         
-        <div className='bg-yellow-500 rounded-2xl shadow-2xl p-8 border border-yellow-300 backdrop-blur-sm'>
-          <p className='text-black text-xl mb-8 font-medium'>What's your favorite hobby?</p>
+        <div className='space-y-8'>
+          <p className='text-yellow-500 text-xl font-medium'>What's your favorite hobby?</p>
           
-          <form onSubmit={handleSubmit} className='space-y-6'>
+          <form onSubmit={handleSubmit} className='space-y-8'>
             <div className='relative group'>
               <input
                 type="text"
@@ -39,14 +39,14 @@ export default function HobbyPage() {
                 onChange={(e) => setHobby(e.target.value)}
                 placeholder="Ex: Cooking, Gaming, Photography"
                 required
-                className="w-full px-6 py-4 bg-yellow-50 border-2 border-yellow-300 rounded-xl text-black placeholder-yellow-700 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-300 shadow-md"
+                className="w-full px-6 py-4 bg-transparent border-b-2 border-yellow-500 text-white placeholder-yellow-500/60 focus:outline-none focus:border-yellow-300 transition-all duration-300"
               />
-              <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-yellow-400 to-orange-500 opacity-0 group-hover:opacity-20 transition-opacity duration-300 pointer-events-none"></div>
+              <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-yellow-300 group-hover:w-full transition-all duration-300 ease-in-out"></div>
             </div>
             
             <button 
               type="submit" 
-              className="w-full px-6 py-4 bg-black text-yellow-400 font-bold rounded-xl active:bg-gray-900 transform transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg hover:shadow-yellow-300/30 flex items-center justify-center gap-2"
+              className="w-full px-6 py-4 bg-yellow-500 text-black font-bold rounded-xl active:bg-yellow-600 transform transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg hover:shadow-yellow-500/30 flex items-center justify-center gap-2"
             >
               <span>Next</span>
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -59,6 +59,11 @@ export default function HobbyPage() {
       
       <div className='absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-yellow-500/5 to-transparent pointer-events-none'></div>
       <div className='absolute top-0 right-0 w-64 h-64 rounded-full bg-yellow-500/5 blur-3xl pointer-events-none'></div>
+      
+      {/* Futuristic elements */}
+      <div className="absolute top-1/4 left-1/4 w-1 h-1 bg-yellow-500 rounded-full animate-pulse"></div>
+      <div className="absolute bottom-1/3 right-1/3 w-2 h-2 bg-yellow-500 rounded-full animate-pulse" style={{animationDelay: '0.5s'}}></div>
+      <div className="absolute top-1/2 right-1/4 w-1 h-1 bg-yellow-500 rounded-full animate-pulse" style={{animationDelay: '1s'}}></div>
     </div>
   );
 }

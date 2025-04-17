@@ -60,7 +60,6 @@ export default function HobbyPage() {
       {/* Enhanced glowing dots elements */}
       <div className="absolute top-1/4 left-1/4 w-1 h-1 bg-yellow-500 rounded-full animate-pulse"></div>
       <div className="absolute bottom-1/3 right-1/3 w-2 h-2 bg-yellow-500 rounded-full animate-pulse" style={{animationDelay: '0.5s'}}></div>
-      <div className="absolute top-1/2 right-1/4 w-1 h-1 bg-yellow-500 rounded-full animate-pulse" style={{animationDelay: '1s'}}></div>
       <div className="absolute bottom-1/4 left-1/3 w-3 h-3 bg-yellow-400 rounded-full animate-pulse" style={{animationDelay: '1.5s', opacity: '0.7'}}></div>
       <div className="absolute top-1/3 right-1/2 w-1 h-1 bg-yellow-300 rounded-full animate-pulse" style={{animationDelay: '0.7s'}}></div>
       <div className="absolute bottom-2/5 left-1/5 w-2 h-2 bg-orange-500 rounded-full animate-pulse" style={{animationDelay: '1.2s', opacity: '0.6'}}></div>
@@ -72,7 +71,6 @@ export default function HobbyPage() {
       <div className="absolute top-3/4 left-1/6 w-1 h-1 bg-yellow-400 rounded-full animate-pulse" style={{animationDelay: '0.8s'}}></div>
       
       {/* Larger, more subtle glowing dots */}
-      <div className="absolute top-1/2 left-1/2 w-4 h-4 bg-yellow-500 rounded-full animate-pulse opacity-20" style={{animationDelay: '1.3s'}}></div>
       <div className="absolute bottom-1/2 right-1/4 w-6 h-6 bg-orange-500 rounded-full animate-pulse opacity-10" style={{animationDelay: '0.6s'}}></div>
       <div className="absolute top-1/4 right-1/3 w-5 h-5 bg-yellow-400 rounded-full animate-pulse opacity-15" style={{animationDelay: '1.9s'}}></div>
       

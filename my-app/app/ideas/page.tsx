@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import 'animate.css';
 import Animate from '../animate/Animate';
+import { useNavigate } from 'react-router-dom';
 
 // Loading Animation Component
 const LoadingAnimation = () => {
@@ -23,9 +24,12 @@ export default function IdeasPage() {
   const [loading, setLoading] = useState(true);
   const [projectBlocks, setProjectBlocks] = useState<any[]>([]);
   const [invalidHobby, setInvalidHobby] = useState(false);
-  
+
   const letterClass = 'text-animate';
   const titleArray = ['P', 'r', 'o', 'j', 'e', 'c', 't', 's'];
+
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     // Get hobby and technologies from query parameters
@@ -138,7 +142,7 @@ export default function IdeasPage() {
             <h2 className='text-2xl font-bold mb-4 text-white'>Invalid Hobby Inputted</h2>
             <p className='text-white mb-4'>The hobby you entered is either inappropriate or not recognized. Please go back and enter a valid hobby.</p>
             <button 
-              onClick={() => window.history.back()} 
+              onClick={() => navigate("/hobbies")} 
               className='bg-black text-white font-bold py-2 px-6 rounded-lg hover:bg-gray-800 transition duration-300'
             >
               Go Back

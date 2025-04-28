@@ -14,8 +14,8 @@ export default function HobbyPage() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Navigate to the technologies page with the hobby as a query parameter
-    router.push(`/tech?hobby=${encodeURIComponent(hobby)}`);
+    // Navigate to the technologies page with the interests as a query parameter
+    router.push(`/tech?interests=${encodeURIComponent(hobby)}`);
   };
 
   return (

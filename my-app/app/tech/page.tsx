@@ -6,19 +6,19 @@ import Animate from '../animate/Animate';
 import 'animate.css';
 
 export default function TechnologiesPage() {
-  const [technologies, setTechnologies] = useState('');
+  const [tech_stack, setTechStack] = useState('');
   const router = useRouter();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Get the hobby from the query parameters
-    const hobby = new URLSearchParams(window.location.search).get('hobby');
-    // Navigate to the ideas page with both hobby and technologies as query parameters
-    if (hobby) {
-      router.push(`/ideas?hobby=${encodeURIComponent(hobby)}&technologies=${encodeURIComponent(technologies)}`);
+    // Get the interests from the query parameters
+    const interests = new URLSearchParams(window.location.search).get('interests');
+    // Navigate to the ideas page with both interests and tech_stack as query parameters
+    if (interests) {
+      router.push(`/ideas?interests=${encodeURIComponent(interests)}&tech_stack=${encodeURIComponent(tech_stack)}`);
     } else {
-      // Handle the case where hobby is null
-      console.error('Hobby is null');
+      // Handle the case where interests is null
+      console.error('Interests is null');
     }
   };
 
@@ -39,8 +39,8 @@ export default function TechnologiesPage() {
             <div className='relative group'>
               <input
                 type="text"
-                value={technologies}
-                onChange={(e) => setTechnologies(e.target.value)}
+                value={tech_stack}
+                onChange={(e) => setTechStack(e.target.value)}
                 placeholder="Ex: Python, React, JavaScript"
                 required
                 className="w-full px-4 md:px-6 py-3 md:py-4 bg-transparent border-b-2 border-yellow-500 text-white placeholder-yellow-500/60 focus:outline-none focus:border-yellow-300 transition-all duration-300"

@@ -4,6 +4,8 @@ import React from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 
+
+
 export default function HomeButton() {
   const router = useRouter();
 
@@ -18,6 +20,7 @@ export default function HomeButton() {
         width={40}
         height={40}
         className="rounded-full"
+        priority
       />
     </button>
   );

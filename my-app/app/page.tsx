@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Animate from '../app/animate/Animate';
 
+
 export default function HomePage() {
   const [letterClass, setLetterClass] = useState('text-animate');
   const titleArray = ['L', 'i', 'g', 'h', 't', 'b', 'u', 'l', 'b'];

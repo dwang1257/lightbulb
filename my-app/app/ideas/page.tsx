@@ -26,6 +26,7 @@ export default function IdeasPage() {
   const [projectBlocks, setProjectBlocks] = useState<any[]>([]);
   const [invalidHobby, setInvalidHobby] = useState(false);
   const [invalidTech, setInvalidTech] = useState(false);
+  const [expandedBlock, setExpandedBlock] = useState<number | null>(null);
 
 
   const letterClass = 'text-animate';
@@ -33,7 +34,10 @@ export default function IdeasPage() {
 
   const router = useRouter();
 
-
+  // Function to toggle expanded state
+  const toggleExpand = (blockIndex: number) => {
+    setExpandedBlock(expandedBlock === blockIndex ? null : blockIndex);
+  };
 
   useEffect(() => {
     // Get hobby and technologies from query parameters
@@ -86,7 +90,8 @@ export default function IdeasPage() {
     let currentBlock: {
       heading: string;
       description: string;
-      content: string[];
+      steps: string[];
+      expanded: boolean;
     } | null = null;
 
     for (let i = 0; i < ideasArray.length; i++) {
@@ -109,7 +114,8 @@ export default function IdeasPage() {
           currentBlock = {
             heading: `${difficultyLevel}: ${projectTitle}`,
             description: '',
-            content: []
+            steps: [],
+            expanded: false
           };
           
           // Check if the next line is the description
@@ -118,9 +124,16 @@ export default function IdeasPage() {
             i++; // Skip the description line in the next iteration
           }
         }
-      } else if (idea.trim() !== '' && currentBlock) {
-        // Add non-empty content to current block
-        currentBlock.content.push(idea);
+      } else if (idea.trim().startsWith('Step ') && currentBlock) {
+        // Add implementation steps
+        currentBlock.steps.push(idea.trim());
+      } else if (idea.trim() !== '' && currentBlock && !idea.trim().startsWith('Step ')) {
+        // If it's not a step and not empty, it might be part of the description
+        if (currentBlock.description) {
+          currentBlock.description += ' ' + idea.trim();
+        } else {
+          currentBlock.description = idea.trim();
+        }
       }
     }
 
@@ -193,35 +206,30 @@ export default function IdeasPage() {
         {projectBlocks.map((block, blockIndex) => (
           <div 
             key={blockIndex} 
-            className='bg-yellow-500 rounded-xl shadow-2xl p-8 border border-yellow-300 transform transition-all duration-300 hover:scale-105 hover:shadow-yellow-400'
+            className='bg-yellow-500 rounded-xl shadow-2xl p-8 border border-yellow-300 transform transition-all duration-300 hover:shadow-yellow-400 cursor-pointer'
+            onClick={() => toggleExpand(blockIndex)}
             style={{
               transition: 'all 0.3s ease',
             }}
           >
             <h2 className='text-2xl font-bold mb-4 text-black'>{block.heading}</h2>
+            <p className='text-black mb-4 font-medium'>{block.description}</p>
             
-            {block.description && (
-              <p className='text-black mb-4 font-medium'>{block.description}</p>
+            {expandedBlock === blockIndex && block.steps.length > 0 && (
+              <div className='mt-4 bg-white bg-opacity-20 p-4 rounded-lg'>
+                <h3 className='text-lg font-bold mb-3 text-black'>Implementation Plan:</h3>
+                <ul className='text-left'>
+                  {block.steps.map((step, idx) => (
+                    <li key={idx} className='mb-2 flex'>
+                      <span className='text-black font-medium'>{step}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             )}
             
-            <div>
-              {block.content.map((item: string, index: number) => {
-                // Check if the line is a bullet point
-                if (item.startsWith('* ')) {
-                  return (
-                    <ul key={index} className='list-disc list-inside text-black mb-2'>
-                      <li>{item.slice(2)}</li>
-                    </ul>
-                  );
-                }
-                
-                // Render normal text
-                return item.trim() !== '' ? (
-                  <p key={index} className='text-black mb-3'>
-                    {item}
-                  </p>
-                ) : null;
-              })}
+            <div className='mt-3 text-sm text-black font-medium'>
+              {expandedBlock === blockIndex ? 'Click to collapse' : 'Click to see implementation steps'}
             </div>
           </div>
         ))}

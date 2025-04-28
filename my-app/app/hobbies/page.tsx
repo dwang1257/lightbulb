@@ -29,7 +29,7 @@ export default function HobbyPage() {
         </div>
         
         <div className='space-y-8'>
-          <p className='text-yellow-500 text-xl font-medium'>What's your favorite hobby?</p>
+          <p className='text-yellow-500 text-xl font-medium'>What&apos;s your favorite hobby?</p>
           
           <form onSubmit={handleSubmit} className='space-y-8'>
             <div className='relative group'>

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import 'animate.css';
 import Animate from '../animate/Animate';
 import { useRouter } from 'next/navigation';
@@ -21,7 +21,6 @@ const LoadingAnimation = () => {
 };
 
 export default function IdeasPage() {
-  const [ideas, setIdeas] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
   
   // Define a proper interface for project blocks
@@ -48,53 +47,8 @@ export default function IdeasPage() {
     setExpandedBlock(expandedBlock === blockIndex ? null : blockIndex);
   };
 
-  useEffect(() => {
-    // Get interests and tech_stack from query parameters
-    const queryParams = new URLSearchParams(window.location.search);
-    const interests = queryParams.get('interests');
-    const tech_stack = queryParams.get('tech_stack');
-    
-
-    // Fetch AI-generated ideas from the backend
-    const fetchIdeas = async () => {
-      try {
-        const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-        
-        // CHANGED FROM /server/generate-ideas to /api/generate-ideas
-        console.log('Fetching from:', `${apiUrl}/server/generate-ideas`);
-        console.log('Sending data:', { interests, tech_stack });
-        
-        const response = await fetch(`${apiUrl}/server/generate-ideas`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ interests, tech_stack }),
-        });
-    
-        const data = await response.json();
-        console.log('Response data:', data);
-        if (data.ideas && data.ideas.length === 1 && data.ideas[0] === 'Invalid interests') {
-          setInvalidInterests(true);
-        } else if (data.ideas && data.ideas.length === 1 && data.ideas[0] === 'Invalid technology'){
-          setInvalidTechStack(true);
-        } else {
-          setIdeas(data.ideas);
-          organizeIdeasIntoBlocks(data.ideas);
-        }
-      } catch (error) {
-        console.error('Error fetching ideas:', error);
-        setLoading(false);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchIdeas();
-  }, []);
-
   // Function to organize ideas into project blocks
-  const organizeIdeasIntoBlocks = (ideasArray: string[]) => {
+  const organizeIdeasIntoBlocks = useCallback((ideasArray: string[]) => {
     const blocks: ProjectBlock[] = [];
     let currentBlock: ProjectBlock | null = null;
 
@@ -147,7 +101,51 @@ export default function IdeasPage() {
     }
 
     setProjectBlocks(blocks);
-  };
+  }, []);
+
+  useEffect(() => {
+    // Get interests and tech_stack from query parameters
+    const queryParams = new URLSearchParams(window.location.search);
+    const interests = queryParams.get('interests');
+    const tech_stack = queryParams.get('tech_stack');
+    
+
+    // Fetch AI-generated ideas from the backend
+    const fetchIdeas = async () => {
+      try {
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+        
+        // CHANGED FROM /server/generate-ideas to /api/generate-ideas
+        console.log('Fetching from:', `${apiUrl}/server/generate-ideas`);
+        console.log('Sending data:', { interests, tech_stack });
+        
+        const response = await fetch(`${apiUrl}/server/generate-ideas`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ interests, tech_stack }),
+        });
+    
+        const data = await response.json();
+        console.log('Response data:', data);
+        if (data.ideas && data.ideas.length === 1 && data.ideas[0] === 'Invalid interests') {
+          setInvalidInterests(true);
+        } else if (data.ideas && data.ideas.length === 1 && data.ideas[0] === 'Invalid technology'){
+          setInvalidTechStack(true);
+        } else {
+          organizeIdeasIntoBlocks(data.ideas);
+        }
+      } catch (error) {
+        console.error('Error fetching ideas:', error);
+        setLoading(false);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchIdeas();
+  }, [organizeIdeasIntoBlocks]);
 
   if (loading) {
     return <LoadingAnimation />;

@@ -3,7 +3,6 @@ import 'animate.css';
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import lightbulb from '../app/idea.png';
 import Animate from '../app/animate/Animate';
 
 export default function HomePage() {
@@ -32,7 +31,7 @@ export default function HomePage() {
         <div className="relative">
           <div className="absolute -inset-10 bg-yellow-400 opacity-20 blur-3xl rounded-full"></div>
           <Image
-            src={lightbulb}
+            src="/idea.png"
             alt="Lightbulb"
             width={150}
             height={150}
@@ -49,7 +48,7 @@ export default function HomePage() {
       <div className="flex flex-col items-center justify-center flex-grow text-center w-full max-w-3xl px-6">
         <p className="text-xl md:text-3xl lg:text-4xl font-light text-white mb-10 md:mb-16 leading-relaxed">
           <span className="font-bold bg-gradient-to-r from-yellow-200 to-yellow-500 bg-clip-text text-transparent">CS Student</span> Without an Internship?<br />
-          <span className="mt-2 md:mt-4 inline-block">Create a Project Now!</span>
+          <span className="mt-2 md:mt-4 inline-block">Get Ideas and Start Building!</span>
         </p>
         
         <div className="relative">

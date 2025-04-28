@@ -29,7 +29,7 @@ export default function TechnologiesPage() {
       <div className='w-full max-w-md z-10'>
         <div className='mb-8 md:mb-16'>
           <h1 className='text-4xl md:text-5xl lg:text-7xl font-bold mb-3 text-yellow-500'>
-            <Animate letterClass='text-animate' strArray={['T', 'e', 'c', 'h', '_', 'S', 't', 'a', 'c', 'k']} index={0} />
+            <Animate letterClass='text-animate' strArray={['T', 'e', 'c', 'h', '\u00A0', 'S', 't', 'a', 'c', 'k']} index={0} />
           </h1>
           <div className='w-16 md:w-24 h-1 bg-yellow-500 mx-auto rounded-full'></div>
         </div>

@@ -28,12 +28,15 @@ def generate_ideas():
         prompt = f"""
                     Generate three project ideas for a computer science student. The student's hobby is {hobby} and they want to learn {technologies}. Provide one basic, one medium, and one advanced idea. Each idea should follow this format:
 
+
                     - Start with **Basic:**, **Medium:**, or **Advanced:** followed by the project title in quotes (e.g., **Basic:** 'Project Title').
                     - On the next line, provide a one-sentence description of the project.
+                    - Then provide a 4-5 step implementation plan with each step on a new line, formatted like:
+                      Step 1: [Brief description of first step]
+                      Step 2: [Brief description of second step]
+                      And so on...
 
                     If the hobby or interest entered is inappropriate or not a real hobby, respond with 'Invalid hobby'. Some examples of invalid hobbies are: gooning, masturbating, anything sexual, drugs, alcohol, diddy party, and anything illegal.
-                    
-                    If the technology entered is an invalid technology, respond with 'Invalid technology'. Some examples of invalid technologies are: anything illegal, anything that is not a coding technology, anything that would not immediately be recognized as a coding technology.
                 """
 
         chat_completion = client.chat.completions.create(

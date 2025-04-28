@@ -23,7 +23,16 @@ const LoadingAnimation = () => {
 export default function IdeasPage() {
   const [ideas, setIdeas] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
-  const [projectBlocks, setProjectBlocks] = useState<any[]>([]);
+  
+  // Define a proper interface for project blocks
+  interface ProjectBlock {
+    heading: string;
+    description: string;
+    steps: string[];
+    expanded: boolean;
+  }
+  
+  const [projectBlocks, setProjectBlocks] = useState<ProjectBlock[]>([]);
   const [invalidInterests, setInvalidInterests] = useState(false);
   const [invalidTechStack, setInvalidTechStack] = useState(false);
   const [expandedBlock, setExpandedBlock] = useState<number | null>(null);
@@ -86,13 +95,8 @@ export default function IdeasPage() {
 
   // Function to organize ideas into project blocks
   const organizeIdeasIntoBlocks = (ideasArray: string[]) => {
-    const blocks: any[] = [];
-    let currentBlock: {
-      heading: string;
-      description: string;
-      steps: string[];
-      expanded: boolean;
-    } | null = null;
+    const blocks: ProjectBlock[] = [];
+    let currentBlock: ProjectBlock | null = null;
 
     for (let i = 0; i < ideasArray.length; i++) {
       const idea = ideasArray[i];
@@ -219,7 +223,7 @@ export default function IdeasPage() {
               <div className='mt-4 bg-white bg-opacity-20 p-4 rounded-lg'>
                 <h3 className='text-lg font-bold mb-3 text-black'>Implementation Plan:</h3>
                 <ul className='text-left'>
-                  {block.steps.map((step, idx) => (
+                  {block.steps.map((step: string, idx: number) => (
                     <li key={idx} className='mb-2 flex'>
                       <span className='text-black font-medium'>{step}</span>
                     </li>

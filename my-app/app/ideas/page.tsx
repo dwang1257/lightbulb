@@ -4,6 +4,7 @@ import React, { useEffect, useState, useCallback } from 'react';
 import 'animate.css';
 import Animate from '../animate/Animate';
 import { useRouter } from 'next/navigation';
+import HomeButton from '../components/HomeButton';
 
 
 // Loading Animation Component
@@ -22,6 +23,7 @@ const LoadingAnimation = () => {
 
 export default function IdeasPage() {
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
   
   // Define a proper interface for project blocks
   interface ProjectBlock {
@@ -139,6 +141,7 @@ export default function IdeasPage() {
       } catch (error) {
         console.error('Error fetching ideas:', error);
         setLoading(false);
+        setError(true);
       } finally {
         setLoading(false);
       }
@@ -148,12 +151,42 @@ export default function IdeasPage() {
   }, [organizeIdeasIntoBlocks]);
 
   if (loading) {
-    return <LoadingAnimation />;
+    return (
+      <>
+        <HomeButton />
+        <LoadingAnimation />
+      </>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className='flex flex-col items-center justify-center min-h-screen bg-black text-center p-6'>
+        <HomeButton />
+        <h1 className='text-6xl font-bold mb-10 text-yellow-500'>
+          <Animate letterClass={letterClass} strArray={titleArray} index={0} />
+        </h1>
+        
+        <div className='w-full max-w-2xl'>
+          <div className='bg-red-500 rounded-xl shadow-2xl p-8 border border-red-400 transform transition-all duration-300'>
+            <h2 className='text-2xl font-bold mb-4 text-white'>Error Occurred</h2>
+            <p className='text-white mb-4'>Something went wrong while generating project ideas. Please try again.</p>
+            <button 
+              onClick={() => router.push('/')}
+              className='bg-black text-white font-bold py-2 px-6 rounded-lg hover:bg-gray-800 transition duration-300'
+            >
+              Go Back to Home
+            </button>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   if (invalidInterests) {
     return (
       <div className='flex flex-col items-center justify-center min-h-screen bg-black text-center p-6'>
+        <HomeButton />
         <h1 className='text-6xl font-bold mb-10 text-yellow-500'>
           <Animate letterClass={letterClass} strArray={titleArray} index={0} />
         </h1>
@@ -163,10 +196,10 @@ export default function IdeasPage() {
             <h2 className='text-2xl font-bold mb-4 text-white'>Invalid Interest Inputted</h2>
             <p className='text-white mb-4'>The interest you entered is either inappropriate or not recognized. Please go back and enter a valid interest.</p>
             <button 
-              onClick={() => router.push("/hobbies")}
+              onClick={() => router.push('/')}
               className='bg-black text-white font-bold py-2 px-6 rounded-lg hover:bg-gray-800 transition duration-300'
             >
-              Go Back
+              Go Back to Home
             </button>
           </div>
         </div>
@@ -177,6 +210,7 @@ export default function IdeasPage() {
   if (invalidTechStack) {
     return (
       <div className='flex flex-col items-center justify-center min-h-screen bg-black text-center p-6'>
+        <HomeButton />
         <h1 className='text-6xl font-bold mb-10 text-yellow-500'>
           <Animate letterClass={letterClass} strArray={titleArray} index={0} />
         </h1>
@@ -186,10 +220,10 @@ export default function IdeasPage() {
             <h2 className='text-2xl font-bold mb-4 text-white'>Invalid Tech Stack Inputted</h2>
             <p className='text-white mb-4'>The tech stack you entered is either inappropriate or not recognized. Please go back and enter a valid tech stack.</p>
             <button 
-              onClick={() => router.back()}
+              onClick={() => router.push('/')}
               className='bg-black text-white font-bold py-2 px-6 rounded-lg hover:bg-gray-800 transition duration-300'
             >
-              Go Back
+              Go Back to Home
             </button>
           </div>
         </div>
@@ -200,6 +234,7 @@ export default function IdeasPage() {
 
   return (
     <div className='flex flex-col items-center justify-center min-h-screen bg-black text-center p-6'>
+      <HomeButton />
       <h1 className='text-6xl font-bold mb-10 text-yellow-500'>
         <Animate letterClass={letterClass} strArray={titleArray} index={0} />
       </h1>

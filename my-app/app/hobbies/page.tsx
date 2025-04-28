@@ -4,13 +4,14 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Animate from '../animate/Animate';
 import 'animate.css';
+import HomeButton from '../components/HomeButton';
 
 export default function HobbyPage() {
   const [hobby, setHobby] = useState('');
   const router = useRouter();
 
   const letterClass = 'text-animate';
-  const titleArray = ['H', 'o', 'b', 'b', 'i', 'e', 's'];
+  const titleArray = ['I', 'n', 't', 'e', 'r', 'e', 's', 't', 's'];
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -20,6 +21,7 @@ export default function HobbyPage() {
 
   return (
     <div className='flex flex-col items-center justify-center min-h-screen text-center p-6 bg-black overflow-hidden relative'>
+      <HomeButton />
       <div className='w-full max-w-md z-10'>
         <div className='mb-16'>
           <h1 className='text-7xl font-bold mb-3 text-yellow-500'>

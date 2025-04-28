@@ -44,6 +44,7 @@ def generate_ideas():
                     Step 5: Implement additional features like forecasts or location detection
 
                     If the interests entered are inappropriate or not real interests, respond with 'Invalid interests'. Some examples of invalid interests are: gooning, masturbating, anything sexual, drugs, alcohol, diddy party, and anything illegal.
+                    If the tech stack entered is inappropriate or not real tech stack, respond with 'Invalid tech stack'. Some examples of invalid tech stack are: gooning, masturbating, anything sexual, drugs, alcohol, diddy party, and anything illegal.
                 """
 
         chat_completion = client.chat.completions.create(

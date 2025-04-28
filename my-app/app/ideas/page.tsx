@@ -24,8 +24,8 @@ export default function IdeasPage() {
   const [ideas, setIdeas] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
   const [projectBlocks, setProjectBlocks] = useState<any[]>([]);
-  const [invalidHobby, setInvalidHobby] = useState(false);
-  const [invalidTech, setInvalidTech] = useState(false);
+  const [invalidInterests, setInvalidInterests] = useState(false);
+  const [invalidTechStack, setInvalidTechStack] = useState(false);
   const [expandedBlock, setExpandedBlock] = useState<number | null>(null);
 
 
@@ -40,10 +40,10 @@ export default function IdeasPage() {
   };
 
   useEffect(() => {
-    // Get hobby and technologies from query parameters
+    // Get interests and tech_stack from query parameters
     const queryParams = new URLSearchParams(window.location.search);
-    const hobby = queryParams.get('hobby');
-    const technologies = queryParams.get('technologies');
+    const interests = queryParams.get('interests');
+    const tech_stack = queryParams.get('tech_stack');
     
 
     // Fetch AI-generated ideas from the backend
@@ -53,22 +53,22 @@ export default function IdeasPage() {
         
         // CHANGED FROM /server/generate-ideas to /api/generate-ideas
         console.log('Fetching from:', `${apiUrl}/server/generate-ideas`);
-        console.log('Sending data:', { hobby, technologies });
+        console.log('Sending data:', { interests, tech_stack });
         
         const response = await fetch(`${apiUrl}/server/generate-ideas`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ hobby, technologies }),
+          body: JSON.stringify({ interests, tech_stack }),
         });
     
         const data = await response.json();
         console.log('Response data:', data);
-        if (data.ideas && data.ideas.length === 1 && data.ideas[0] === 'Invalid hobby') {
-          setInvalidHobby(true);
+        if (data.ideas && data.ideas.length === 1 && data.ideas[0] === 'Invalid interests') {
+          setInvalidInterests(true);
         } else if (data.ideas && data.ideas.length === 1 && data.ideas[0] === 'Invalid technology'){
-          setInvalidTech(true);
+          setInvalidTechStack(true);
         } else {
           setIdeas(data.ideas);
           organizeIdeasIntoBlocks(data.ideas);
@@ -149,7 +149,7 @@ export default function IdeasPage() {
     return <LoadingAnimation />;
   }
 
-  if (invalidHobby) {
+  if (invalidInterests) {
     return (
       <div className='flex flex-col items-center justify-center min-h-screen bg-black text-center p-6'>
         <h1 className='text-6xl font-bold mb-10 text-yellow-500'>
@@ -158,8 +158,8 @@ export default function IdeasPage() {
         
         <div className='w-full max-w-2xl'>
           <div className='bg-red-500 rounded-xl shadow-2xl p-8 border border-red-400 transform transition-all duration-300'>
-            <h2 className='text-2xl font-bold mb-4 text-white'>Invalid Hobby Inputted</h2>
-            <p className='text-white mb-4'>The hobby you entered is either inappropriate or not recognized. Please go back and enter a valid hobby.</p>
+            <h2 className='text-2xl font-bold mb-4 text-white'>Invalid Interest Inputted</h2>
+            <p className='text-white mb-4'>The interest you entered is either inappropriate or not recognized. Please go back and enter a valid interest.</p>
             <button 
               onClick={() => router.push("/hobbies")}
               className='bg-black text-white font-bold py-2 px-6 rounded-lg hover:bg-gray-800 transition duration-300'
@@ -172,7 +172,7 @@ export default function IdeasPage() {
     );
   }
 
-  if (invalidTech) {
+  if (invalidTechStack) {
     return (
       <div className='flex flex-col items-center justify-center min-h-screen bg-black text-center p-6'>
         <h1 className='text-6xl font-bold mb-10 text-yellow-500'>
@@ -181,8 +181,8 @@ export default function IdeasPage() {
         
         <div className='w-full max-w-2xl'>
           <div className='bg-red-500 rounded-xl shadow-2xl p-8 border border-red-400 transform transition-all duration-300'>
-            <h2 className='text-2xl font-bold mb-4 text-white'>Invalid Technology Inputted</h2>
-            <p className='text-white mb-4'>The technology you entered is either inappropriate or not recognized. Please go back and enter a valid technology.</p>
+            <h2 className='text-2xl font-bold mb-4 text-white'>Invalid Tech Stack Inputted</h2>
+            <p className='text-white mb-4'>The tech stack you entered is either inappropriate or not recognized. Please go back and enter a valid tech stack.</p>
             <button 
               onClick={() => router.back()}
               className='bg-black text-white font-bold py-2 px-6 rounded-lg hover:bg-gray-800 transition duration-300'

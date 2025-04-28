@@ -16,27 +16,34 @@ client = Groq(
 @app.route('/server/generate-ideas', methods=['POST'])
 def generate_ideas():
     data = request.json
-    hobby = data.get('hobby')
-    technologies = data.get('technologies')
+    interests = data.get('interests')
+    tech_stack = data.get('tech_stack')
 
-    print(f"Received request with hobby: {hobby}, technologies: {technologies}")
+    print(f"Received request with interests: {interests}, tech stack: {tech_stack}")
 
-    if not hobby or not technologies:
-        return jsonify({'error': 'Hobby and technologies are required'}), 400
+    if not interests or not tech_stack:
+        return jsonify({'error': 'Interests and tech stack are required'}), 400
 
     try:
         prompt = f"""
-                    Generate three project ideas for a computer science student. The student's hobby is {hobby} and they want to learn {technologies}. Provide one basic, one medium, and one advanced idea. Each idea should follow this format:
+                    Generate three project ideas for a computer science student. The student's interests are {interests} and they want to learn {tech_stack}. Provide one basic, one medium, and one advanced idea. Each idea should follow this format:
 
 
                     - Start with **Basic:**, **Medium:**, or **Advanced:** followed by the project title in quotes (e.g., **Basic:** 'Project Title').
                     - On the next line, provide a one-sentence description of the project.
-                    - Then provide a 4-5 step implementation plan with each step on a new line, formatted like:
-                      Step 1: [Brief description of first step]
-                      Step 2: [Brief description of second step]
+                    - Then provide a clear 3-5 step implementation plan with each step on a new line, formatted like:
+                      Step 1: [Specific action like "Set up API connection" or "Create UI layout"]
+                      Step 2: [Next specific action]
                       And so on...
+                    
+                    Make sure each step is practical and actionable. For example, instead of just "Make a Weather App," the steps should be:
+                    Step 1: Set up API connection to weather service
+                    Step 2: Create functions to parse JSON response data
+                    Step 3: Build basic UI with search and results display
+                    Step 4: Add error handling and loading states
+                    Step 5: Implement additional features like forecasts or location detection
 
-                    If the hobby or interest entered is inappropriate or not a real hobby, respond with 'Invalid hobby'. Some examples of invalid hobbies are: gooning, masturbating, anything sexual, drugs, alcohol, diddy party, and anything illegal.
+                    If the interests entered are inappropriate or not real interests, respond with 'Invalid interests'. Some examples of invalid interests are: gooning, masturbating, anything sexual, drugs, alcohol, diddy party, and anything illegal.
                 """
 
         chat_completion = client.chat.completions.create(

@@ -22,8 +22,11 @@ def test_test_endpoint(client):
     assert response.status_code == 200
     assert b'Backend is working!' in response.data
 
-def test_generate_ideas_missing_data(client):
+def test_generate_ideas(client):
     # Test 400 error when missing interests/tech_stack
-    response = client.post('/server/generate-ideas', json={})
-    assert response.status_code == 400
-    assert b'error' in response.data
+    response = client.post('/server/generate-ideas', json={
+        "interests": ["Machine Learning"],
+        "tech_stack": ["Python",]
+    })
+    assert response.status_code == 200
+    assert b'ideas' in response.data

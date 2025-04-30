@@ -22,10 +22,10 @@ export default function HomePage() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen items-center justify-center bg-black">
-      <div className="flex flex-col items-center justify-center w-full max-w-4xl px-4 space-y-6">
-        {/* Logo Area with Enhanced Glow */}
-        <div className="relative group">
+    <div className="flex flex-col min-h-screen items-center justify-center bg-black px-6">
+      <div className="flex flex-col items-center justify-center w-full max-w-4xl space-y-10">
+        {/* Logo Glow */}
+        <div className="relative group mt-4">
           <div className="absolute -inset-8 bg-gradient-to-r from-[#FFD700] to-[#FFB300] opacity-20 blur-2xl rounded-full group-hover:opacity-30 transition-opacity duration-500"></div>
           <div className="absolute inset-0 bg-gradient-to-r from-[#FFD700] to-[#FFB300] opacity-10 blur-xl rounded-full animate-pulse"></div>
           <Image
@@ -38,20 +38,19 @@ export default function HomePage() {
           />
         </div>
 
-        {/* Title with Modern Gradient */}
+        {/* Gradient Title */}
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#FFD700] to-[#FFB300] animate-fade-in">
           <Animate letterClass={letterClass} strArray={titleArray} index={0} />
         </h1>
 
-        {/* Tagline */}
-        <p className="text-xl md:text-2xl lg:text-3xl font-light text-white text-center max-w-2xl animate-fade-in-up">
-          Turn Your Ideas Into Reality
-          <br />
-          <span className="text-yellow-400">Start Building Something Amazing</span>
-        </p>
+        {/* New Tagline */}
+        <div className="text-xl md:text-2xl lg:text-3xl font-light text-white text-center max-w-2xl animate-fade-in-up space-y-2">
+          <p>CS Student Without an Internship?</p>
+          <p className="text-yellow-400 font-medium">Get Inspired. Start Building.</p>
+        </div>
 
-        {/* Modern Button */}
-        <div className="relative group mt-8">
+        {/* CTA Button */}
+        <div className="relative group mt-10">
           <div className="absolute -inset-1 bg-gradient-to-r from-[#FFD700] to-[#FFB300] opacity-70 blur rounded-lg group-hover:opacity-100 transition-opacity duration-300"></div>
           <button
             onClick={navigateToHobbies}
@@ -63,7 +62,7 @@ export default function HomePage() {
       </div>
 
       {/* Footer */}
-      <footer className="absolute bottom-0 w-full text-center text-xs md:text-sm text-gray-500 py-4">
+      <footer className="absolute bottom-0 w-full text-center text-xs md:text-sm text-gray-500 py-6">
         <div className="mx-auto max-w-4xl px-4">
           <a href="https://www.flaticon.com/free-icons/idea" title="idea icons" className="hover:text-yellow-400 transition-colors">
             Idea icons created by Good Ware - Flaticon

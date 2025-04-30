@@ -1,0 +1,24 @@
+import pytest
+from app import app
+
+@pytest.fixture
+def client():
+    app.config['TESTING'] = True
+    with app.test_client() as client:
+        yield client
+
+def test_health_check(client):
+    response = client.get('/')
+    assert response.status_code == 200
+    assert b'Backend is running!' in response.data
+
+def test_test_endpoint(client):
+    response = client.get('/test')
+    assert response.status_code == 200
+    assert b'Backend is working!' in response.data
+
+def test_generate_ideas_missing_data(client):
+    # Test 400 error when missing interests/tech_stack
+    response = client.post('/server/generate-ideas', json={})
+    assert response.status_code == 400
+    assert b'error' in response.data

@@ -22,8 +22,8 @@ export default function HomePage() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen items-center justify-center bg-black px-6">
-      <div className="flex flex-col items-center justify-center w-full max-w-4xl space-y-10">
+    <div className="flex flex-col min-h-screen items-center bg-black px-6">
+      <div className="flex flex-col items-center justify-center w-full max-w-4xl space-y-10 flex-grow mx-auto">
         {/* Logo Glow */}
         <div className="relative group mt-4">
           <div className="absolute -inset-8 bg-gradient-to-r from-[#FFD700] to-[#FFB300] opacity-20 blur-2xl rounded-full group-hover:opacity-30 transition-opacity duration-500"></div>
@@ -62,7 +62,7 @@ export default function HomePage() {
       </div>
 
       {/* Footer */}
-      <footer className="absolute bottom-0 w-full text-center text-xs md:text-sm text-gray-500 py-6">
+      <footer className="w-full text-center text-xs md:text-sm text-gray-500 py-6 mt-auto">
         <div className="mx-auto max-w-4xl px-4">
           <a href="https://www.flaticon.com/free-icons/idea" title="idea icons" className="hover:text-yellow-400 transition-colors">
             Idea icons created by Good Ware - Flaticon

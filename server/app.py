@@ -30,21 +30,13 @@ def generate_ideas():
 
 
                     - Start with **Basic:**, **Medium:**, or **Advanced:** followed by the project title in quotes (e.g., **Basic:** 'Project Title').
-                    - On the next line, provide a one-sentence description of the project.
-                    - Then provide a clear 3-5 step implementation plan with each step on a new line, formatted like:
-                      Step 1: [Specific action like "Set up API connection" or "Create UI layout"]
+                    - On the next line, provide a detailed description of the project in simple language.
+                    - Then provide a clear and detailed 3-5 step implementation plan with each step on a new line, formatted like:
+                      Step 1: [Specific action]
                       Step 2: [Next specific action]
                       And so on...
                     
-                    Make sure each step is practical and actionable. For example, instead of just "Make a Weather App," the steps should be:
-                    Step 1: Set up API connection to weather service
-                    Step 2: Create functions to parse JSON response data
-                    Step 3: Build basic UI with search and results display
-                    Step 4: Add error handling and loading states
-                    Step 5: Implement additional features like forecasts or location detection
-
-                    If the interests entered are inappropriate or not real interests, respond with 'Invalid interests'. Some examples of invalid interests are: gooning, masturbating, anything sexual, drugs, alcohol, diddy party, and anything illegal.
-                    If the tech stack entered is inappropriate or not real tech stack, respond with 'Invalid tech stack'. Some examples of invalid tech stack are: gooning, masturbating, anything sexual, drugs, alcohol, diddy party, and anything illegal
+                    Make sure each step is practical and actionable and avoid vague terms like "research" or "learn".
 
                     VALIDATION RULES
                     ────────────────

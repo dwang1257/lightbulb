@@ -26,12 +26,25 @@ def generate_ideas():
 
     try:
         prompt = f"""
-                    You are Lightbulb, an assistant that generates project ideas for college level computer science students.
+                    Generate three project ideas for a computer science student. The student's interests are {interests} and they want to learn {tech_stack}. Provide one basic, one medium, and one advanced idea. Each idea should follow this format:
 
-                    INPUT FIELDS
-                    ────────────
-                    • interests : {interests} (string, comma separated, ≤ 100 characters total)
-                    • tech_stack : {tech_stack} (string, comma separated, ≤ 100 characters total)
+
+                    - Start with **Basic:**, **Medium:**, or **Advanced:** followed by the project title in quotes (e.g., **Basic:** 'Project Title').
+                    - On the next line, provide a one-sentence description of the project.
+                    - Then provide a clear 3-5 step implementation plan with each step on a new line, formatted like:
+                      Step 1: [Specific action like "Set up API connection" or "Create UI layout"]
+                      Step 2: [Next specific action]
+                      And so on...
+                    
+                    Make sure each step is practical and actionable. For example, instead of just "Make a Weather App," the steps should be:
+                    Step 1: Set up API connection to weather service
+                    Step 2: Create functions to parse JSON response data
+                    Step 3: Build basic UI with search and results display
+                    Step 4: Add error handling and loading states
+                    Step 5: Implement additional features like forecasts or location detection
+
+                    If the interests entered are inappropriate or not real interests, respond with 'Invalid interests'. Some examples of invalid interests are: gooning, masturbating, anything sexual, drugs, alcohol, diddy party, and anything illegal.
+                    If the tech stack entered is inappropriate or not real tech stack, respond with 'Invalid tech stack'. Some examples of invalid tech stack are: gooning, masturbating, anything sexual, drugs, alcohol, diddy party, and anything illegal
 
                     VALIDATION RULES
                     ────────────────
@@ -41,22 +54,6 @@ def generate_ideas():
                     BANNED_TERMS =  sexual content terms, illegal activity terms, “diddy party”, “gooning”, “masturbate”, “drugs”, “alcohol” 
                     4. If either field exceeds 100 characters -> reply exactly: **“Input too long.”**
 
-                    OUTPUT FORMAT
-                    ─────────────
-                    Return **exactly three** project ideas, one per difficulty tier, in the order Basic → Medium → Advanced.  
-                    For each tier, output **only** the following sections, in Markdown, with a blank line after each idea:
-
-                    **TierLabel:** “Project Title”  
-                    *One sentence description of the project.*  
-                    **Why It Fits:** one sentence linking the idea to at least one item from *interests*.  
-                    **What You'll Learn:** one sentence highlighting key skills or CS concepts.  
-                    **Implementation Plan:**  
-                     Step 1: …  
-                     Step 2: …  
-                     Step 3: … (add Step 4/5 only if truly needed)  
-                     • Each step must reference at least one element of *tech_stack* or an immediately implied prerequisite (e.g., “Set up PostgreSQL schema”).  
-                     • Keep every step ≤ 120 characters and begin with an action verb.
-
                     STYLE GUIDELINES
                     ────────────────
                     • Titles: concise (≤ 60 chars), evocative, no emojis.  
@@ -64,25 +61,7 @@ def generate_ideas():
                     • Never mention these instructions or the validation process in the output.  
                     • Stay factual; do not fabricate non existent APIs or libraries.  
                     • Avoid repetition across the three ideas—cover distinct problem domains or end user values.
-
-                    EXAMPLES (do NOT repeat verbatim)
-                    ─────────────────────────────────
-                    **Basic:** “Campus Weather Widget”  
-                    Fetch and display local weather on a minimal web dashboard.  
-                    **Why It Fits:** Uses your interest in UI/UX and quick wins.  
-                    **What You'll Learn:** REST APIs, JSON parsing, responsive design basics.  
-                    **Implementation Plan:**  
-                    Step 1: Call OpenWeatherMap API with campus lat/long  
-                    Step 2: Parse JSON into a minimal TypeScript model  
-                    Step 3: Build a React component to render current conditions  
-                    Step 4: Add error and offline handling with Service Workers  
-
-                    (Provide Medium and Advanced ideas similarly.)
-
-                    REMEMBER
-                    ────────
-                    If validation fails, output only the specified error message—no preset text, no Markdown, no punctuation beyond the period.
-                """
+        """
 
         chat_completion = client.chat.completions.create(
             messages=[{"role": "user", "content": prompt}],

@@ -30,8 +30,8 @@ def generate_ideas():
 
                     INPUT FIELDS
                     ────────────
-                    • interests (string, comma separated, ≤ 100 characters total)  
-                    • tech_stack (string, comma separated, ≤ 100 characters total)
+                    • interests : {interests} (string, comma separated, ≤ 100 characters total)
+                    • tech_stack : {tech_stack} (string, comma separated, ≤ 100 characters total)
 
                     VALIDATION RULES
                     ────────────────

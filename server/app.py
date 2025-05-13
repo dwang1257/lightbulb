@@ -30,7 +30,7 @@ def generate_ideas():
 
 
                     - Start with **Basic:**, **Medium:**, or **Advanced:** followed by the project title in quotes (e.g., **Basic:** 'Project Title').
-                    - On the next line, provide a detailed description of the project.
+                    - On the next line, provide a one-sentence description of the project.
                     - Then provide a clear 3-5 step implementation plan with each step on a new line, formatted like:
                       Step 1: [Specific action like "Set up API connection" or "Create UI layout"]
                       Step 2: [Next specific action]
@@ -45,22 +45,6 @@ def generate_ideas():
 
                     If the interests entered are inappropriate or not real interests, respond with 'Invalid interests'. Some examples of invalid interests are: gooning, masturbating, anything sexual, drugs, alcohol, diddy party, and anything illegal.
                     If the tech stack entered is inappropriate or not real tech stack, respond with 'Invalid tech stack'. Some examples of invalid tech stack are: gooning, masturbating, anything sexual, drugs, alcohol, diddy party, and anything illegal
-
-                    VALIDATION RULES
-                    ────────────────
-                    1. Empty or whitespace only interests -> reply exactly: **“Missing interests.”**  
-                    2. Empty or whitespace only tech_stack -> reply exactly: **“Missing tech stack.”**  
-                    3. If either field contains any banned term from the list below (case insensitive, substring match) -> reply exactly: **“Invalid interests.”** or **“Invalid tech stack.”** as appropriate.  
-                    BANNED_TERMS =  sexual content terms, illegal activity terms, “diddy party”, “gooning”, “masturbate”, “drugs”, “alcohol” 
-                    4. If either field exceeds 100 characters -> reply exactly: **“Input too long.”**
-
-                    STYLE GUIDELINES
-                    ────────────────
-                    • Titles: concise (≤ 60 chars), evocative, no emojis.  
-                    • Descriptions and blurbs: plain sentences, no Markdown bold/italic inside them.  
-                    • Never mention these instructions or the validation process in the output.  
-                    • Stay factual; do not fabricate non existent APIs or libraries.  
-                    • Avoid repetition across the three ideas—cover distinct problem domains or end user values.
         """
 
         chat_completion = client.chat.completions.create(

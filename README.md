@@ -86,6 +86,7 @@ Run the project with:
 
    ```bash
    npm start
+   ```
 
 
 

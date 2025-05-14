@@ -71,3 +71,22 @@ Build Lightbulb from the source and install dependencies:
 
    ```bash
    git clone https://github.com/dwang1257/lightbulb
+
+---
+
+### Usage
+
+Run the project with:
+
+1. **Using pip:**
+
+   ```bash
+   python {entrypoint}
+   ```
+2. **Using npm**
+
+  ```bash
+  npm start
+
+
+

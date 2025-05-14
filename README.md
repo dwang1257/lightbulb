@@ -82,11 +82,13 @@ Run the project with:
 
    ```bash
    python {entrypoint}
-   ```
-2. **Using npm**
+1. **Using npm:**
 
-  ```bash
-  npm start
+   ```bash
+   npm start
+
+
+
 
 
 

@@ -44,11 +44,9 @@ Lightbulb is a powerful developer tool designed to ignite creativity by generati
 This project empowers developers to explore innovative concepts and build robust applications effortlessly. The core features include:
 
 - 💡 **AI-generated Project Ideas**: Tailored suggestions based on user interests and tech stacks, enhancing creativity.
-- 🚀 **Flask-based Web API**: Simplifies backend development, allowing you to focus on building features.
 - 🎨 **Next.js Frontend**: Offers a modern, responsive user interface that boosts user engagement.
 - 🧪 **Continuous Integration**: Automates testing processes, ensuring code quality and reliability.
 - ✨ **Customizable Styling with Tailwind CSS**: Facilitates rapid UI development with utility-first design.
-- 🧵 **TypeScript Support**: Enhances code quality and maintainability through type safety.
 
 ---
 

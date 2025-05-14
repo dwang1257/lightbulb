@@ -76,15 +76,9 @@ Build Lightbulb from the source and install dependencies:
 
 Run the project with:
 
-1. **Using pip:**
+1. **https://lightbulb-ideas.vercel.app**
 
-   ```bash
-   python {entrypoint}
-1. **Using npm:**
 
-   ```bash
-   npm start
-   ```
 
 
 

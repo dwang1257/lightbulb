@@ -37,6 +37,7 @@ export default function IdeasPage() {
   const [invalidInterests, setInvalidInterests] = useState(false);
   const [invalidTechStack, setInvalidTechStack] = useState(false);
   const [expandedBlock, setExpandedBlock] = useState<number | null>(null);
+  const [cronjob, setCronjob] = useState(false);
 
 
   const letterClass = 'text-animate';
@@ -135,6 +136,8 @@ export default function IdeasPage() {
           setInvalidInterests(true);
         } else if (data.ideas && data.ideas.length === 1 && data.ideas[0] === 'Invalid technology'){
           setInvalidTechStack(true);
+        } else if (data.ideas && data.ideas.length === 1 && data.ideas[0] === 'ok') {
+          setCronjob(true);
         } else {
           organizeIdeasIntoBlocks(data.ideas);
         }
@@ -181,6 +184,10 @@ export default function IdeasPage() {
         </div>
       </div>
     );
+  }
+
+  if (cronjob) {
+    return (console.log('Crongjob running'));
   }
 
   if (invalidInterests) {

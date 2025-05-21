@@ -45,6 +45,8 @@ def generate_ideas():
 
                     If the interests entered are inappropriate or not real interests, respond with 'Invalid interests'. Some examples of invalid interests are: gooning, masturbating, anything sexual, drugs, alcohol, diddy party, and anything illegal.
                     If the tech stack entered is inappropriate or not real tech stack, respond with 'Invalid tech stack'. Some examples of invalid tech stack are: gooning, masturbating, anything sexual, drugs, alcohol, diddy party, and anything illegal
+                    
+                    **IF THE INTEREST AND TECH STACK ENTERED ARE BOTH: cronjob THEN THIS IS A CRONJOB AND RESPOND WITH:**ok**
         """
 
         chat_completion = client.chat.completions.create(

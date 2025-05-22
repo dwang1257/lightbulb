@@ -20,6 +20,9 @@ def generate_ideas():
     tech_stack = data.get('tech_stack')
 
     print(f"Received request with interests: {interests}, tech stack: {tech_stack}")
+    
+    if interests == "cronjob" and tech_stack == "cronjob":
+        return jsonify({'ideas': ['cronjob running']})
 
     if not interests or not tech_stack:
         return jsonify({'error': 'Interests and tech stack are required'}), 400
@@ -27,9 +30,6 @@ def generate_ideas():
     try:
         prompt = f"""
                     Generate three project ideas for a computer science student. The student's interests are {interests} and they want to learn {tech_stack}. Provide one basic, one medium, and one advanced idea. Each idea should follow this format:
-
-
-                    **IF THE INTEREST AND TECH STACK ENTERED ARE BOTH: cronjob THEN THIS IS A CRONJOB AND RESPOND WITH:**cronjob running**
                     
                     - Start with **Basic:**, **Medium:**, or **Advanced:** followed by the project title in quotes (e.g., **Basic:** 'Project Title').
                     - On the next line, provide a one-sentence description of the project.

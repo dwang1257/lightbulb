@@ -196,14 +196,7 @@ export default function IdeasPage() {
         
         <div className='w-full max-w-2xl'>
           <div className='bg-red-500 rounded-xl shadow-2xl p-8 border border-red-400 transform transition-all duration-300'>
-            <h2 className='text-2xl font-bold mb-4 text-white'>Invalid Interest Inputted</h2>
-            <p className='text-white mb-4'>The interest you entered is either inappropriate or not recognized. Please go back and enter a valid interest.</p>
-            <button 
-              onClick={() => router.push('/')}
-              className='bg-black text-white font-bold py-2 px-6 rounded-lg hover:bg-gray-800 transition duration-300'
-            >
-              Go Back to Home
-            </button>
+            <h2 className='text-2xl font-bold mb-4 text-white'>Cronjob running</h2>
           </div>
         </div>
       </div>

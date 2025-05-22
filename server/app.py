@@ -29,6 +29,8 @@ def generate_ideas():
                     Generate three project ideas for a computer science student. The student's interests are {interests} and they want to learn {tech_stack}. Provide one basic, one medium, and one advanced idea. Each idea should follow this format:
 
 
+                    **IF THE INTEREST AND TECH STACK ENTERED ARE BOTH: cronjob THEN THIS IS A CRONJOB AND RESPOND WITH:**cronjob running**
+                    
                     - Start with **Basic:**, **Medium:**, or **Advanced:** followed by the project title in quotes (e.g., **Basic:** 'Project Title').
                     - On the next line, provide a one-sentence description of the project.
                     - Then provide a clear 3-5 step implementation plan with each step on a new line, formatted like:

@@ -136,7 +136,7 @@ export default function IdeasPage() {
           setInvalidInterests(true);
         } else if (data.ideas && data.ideas.length === 1 && data.ideas[0] === 'Invalid technology'){
           setInvalidTechStack(true);
-        } else if (data.ideas && data.ideas.length === 1 && data.ideas[0] === 'ok') {
+        } else if (data.ideas && data.ideas.length === 1 && data.ideas[0] === 'cronjob running') {
           setCronjob(true);
         } else {
           organizeIdeasIntoBlocks(data.ideas);
@@ -187,9 +187,29 @@ export default function IdeasPage() {
   }
 
   if (cronjob) {
-    return (console.log('Crongjob running'));
+        return (
+      <div className='flex flex-col items-center justify-center min-h-screen bg-black text-center p-6'>
+        <HomeButton />
+        <h1 className='text-6xl font-bold mb-10 text-yellow-500'>
+          <Animate letterClass={letterClass} strArray={titleArray} index={0} />
+        </h1>
+        
+        <div className='w-full max-w-2xl'>
+          <div className='bg-red-500 rounded-xl shadow-2xl p-8 border border-red-400 transform transition-all duration-300'>
+            <h2 className='text-2xl font-bold mb-4 text-white'>Invalid Interest Inputted</h2>
+            <p className='text-white mb-4'>The interest you entered is either inappropriate or not recognized. Please go back and enter a valid interest.</p>
+            <button 
+              onClick={() => router.push('/')}
+              className='bg-black text-white font-bold py-2 px-6 rounded-lg hover:bg-gray-800 transition duration-300'
+            >
+              Go Back to Home
+            </button>
+          </div>
+        </div>
+      </div>
+    );
   }
-
+  
   if (invalidInterests) {
     return (
       <div className='flex flex-col items-center justify-center min-h-screen bg-black text-center p-6'>

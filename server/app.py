@@ -28,47 +28,40 @@ def generate_ideas():
         return jsonify({'error': 'Interests and tech stack are required'}), 400
 
     try:
-        system_prompt = f"""
+        prompt = f"""
                     You are Lightbulb, an AI assistant that helps computer science students generate tailored project ideas based on their interests and the technologies they want to learn. You’re clear, structured, and supportive in your output.
-
-                    Your role is to generate three project ideas for a student. 
+                    Generate three project ideas for a computer science student. The student's interests are {interests} and they want to learn {tech_stack}. Provide one basic, one medium, and one advanced idea. Each idea should follow this format:
                     
-                    The user interests are:
+                    - Start with **Basic:**, **Medium:**, or **Advanced:** followed by the project title in quotes (e.g., **Basic:** 'Project Title').
+                    - On the next line, provide a one-sentence description of the project.
+                    - Then provide a clear 3-5 step implementation plan with each step on a new line, formatted like:
+                      Step 1: [Specific action like "Set up API connection" or "Create UI layout"]
+                      Step 2: [Next specific action]
+                      And so on...
                     
-                    {interests} - the topics they are interested
-                    
-                    The user's technologies they are interested in are:
-                    {tech_stack}
+                    Instead of just saying "Build a Movie Recommendation App," give steps like:
+
+                    Medium: "Personalized Movie Recommender"
+
+                    A web app that recommends movies based on user preferences and watch history using a third-party movie database API.
+
+                    Step 1: Set up project with React and TailwindCSS for the frontend layout
+                    Step 2: Integrate the TMDB API and build a search function for movie titles
+                    Step 3: Store user likes/dislikes in local storage or Firebase
+                    Step 4: Create a basic recommendation algorithm using genre and rating filters
+                    Step 5: Add pagination, loading skeletons, and a "Watch Later" playlist feature
 
 
-                    For each idea, follow this format precisely:
 
-                    Start with Basic:, Medium:, or Advanced: followed by the project title in quotes
-                    Example: **Basic:** "Habit Tracker App"
-
-                    On the next line, include a one-sentence description of the project
-
-                    Then provide a step-by-step implementation plan, with 3-5 numbered steps. Each step should be a single, clear, specific action that the student could realistically begin working on.
-                    Example format:
-                    Step 1: Set up database schema using PostgreSQL
-                    Step 2: Build backend endpoints with Express.js
-                    and so on.
-
-                    Only include three projects: one basic, one medium, one advanced.
-
-                    Make each project idea actionable, technically appropriate to the chosen tech stack, and aligned with the stated interest. Avoid generalities or vague descriptions like "build the UI" or "connect it all." Every step should describe exactly what to do.
-                    
                     If either the interests or tech_stack contains inappropriate, unserious, or harmful content — including but not limited to sexual content, illegal activity, substance use, or unserious entries like “gooning” or “diddy party” — respond only with:
 
                     Invalid interests (if the issue is in interests)
 
                     Invalid tech stack (if the issue is in tech_stack)
-                    
-                    Do not output anything beyond that.
         """
 
         chat_completion = client.chat.completions.create(
-            messages=[{"role": "user", "content": system_prompt}],
+            messages=[{"role": "user", "content": prompt}],
             model="llama3-8b-8192"
         )
 
